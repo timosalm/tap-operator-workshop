@@ -3,4 +3,5 @@ modules:
   activate:
     - workshop-overview
     - exercises/prepaved-path-to-prod
+    - exercises/workload
     - workshop-summary

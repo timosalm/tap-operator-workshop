@@ -4,6 +4,9 @@ modules:
         exit_sign: Path to Prod
     exercises/prepaved-path-to-prod:
         name: Pre-paved Path to Production
+        exit_sign: Workload
+    exercises/workload:
+        name: Configure a continous path to production
         exit_sign: End Workshop
     workshop-summary:
         name: Workshop Summary
