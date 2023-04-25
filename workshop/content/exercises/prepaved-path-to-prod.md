@@ -36,7 +36,10 @@ url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/cartog
 ```
 
 ###### Kubernetes Resource Interoperability
-With Cartographer, it's possible to choreograph both Kubernetes and non-Kubernetes resources within the same supply chain via **integrations to existing CI/CD tools** like in our case Tekton or Jenkins.
+With Cartographer, it's possible to choreograph both Kubernetes and non-Kubernetes resources within the same supply chain via **integrations to existing CI/CD tools** like in our case **Tekton** or Jenkins.
+```dashboard:open-url
+url: https://tekton.dev
+```
 
 ###### Separation of Concerns
 While the supply chain is operator facing, Cartographer also provides an **abstraction for developers** called **Workloads**. Workloads allow developers to create application specifications such as the location of their repository, environment variables, and service claims.
