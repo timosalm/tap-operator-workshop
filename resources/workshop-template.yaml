@@ -1,4 +1,6 @@
 #@ load("@ytt:data", "data")
+#@ load("@ytt:base64", "base64")
+#@ load("@ytt:json", "json")
 ---
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: Workshop
@@ -111,6 +113,24 @@ spec:
           namespace: $(workshop_namespace)
           name: $(service_account)
     # Resources
+    - apiVersion: v1
+      kind: Secret
+      metadata:
+        name: registry-credentials
+      type: kubernetes.io/dockerconfigjson
+      data:
+        #@ docker_auth = base64.encode("{}:{}".format(data.values.container_registry.username, data.values.container_registry.password))
+        #@ docker_creds = {"username": data.values.container_registry.username, "password": data.values.container_registry.password, "auth": docker_auth}
+        .dockerconfigjson: #@ base64.encode(json.encode({"auths": {data.values.container_registry.hostname: docker_creds}}))
+    - apiVersion: v1
+      kind: Secret
+      metadata:
+        annotations:
+          tekton.dev/git-0: #@ base64.encode(data.values.gitops.host)
+        name: git-https
+      data:
+        username: #@ base64.encode(data.values.gitops.username)
+        password: #@ base64.encode(data.values.gitops.password)
     - apiVersion: kappctrl.k14s.io/v1alpha1
       kind: App
       metadata:

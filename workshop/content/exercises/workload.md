@@ -51,7 +51,7 @@ The GitOps for the Workload is in our workshop implemented using Carvel's **kapp
 url: https://carvel.dev/kapp-controller/
 ```
 
-The kapp-controller's `App` CRD is used to provide all neccesary configuration to continuously fetch Workload configuration from the Git repository and apply it to the workshops namespace.
+The kapp-controller's [App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-overview/) CRD is used to provide all neccesary configuration to continuously fetch Workload configuration from the Git repository and apply it to the workshops namespace.
 ```execute
 kubectl get apps workload-gitops
 ```

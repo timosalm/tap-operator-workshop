@@ -2,8 +2,14 @@
 ---
 container_registry:
   hostname: harbor.example.com
+  username: 
+  password:
 workshop_git:
   username: tsalm-vmware
   branch: main
 tap:
   ingress_domain: example.com
+gitops:
+  host: https://github.com
+  username: user
+  password: ""
