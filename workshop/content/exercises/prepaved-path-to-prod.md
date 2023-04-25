@@ -44,5 +44,5 @@ url: https://tekton.dev
 ###### Separation of Concerns
 While the supply chain is operator facing, Cartographer also provides an **interface for developers** called **Workload**. Workloads allow developers to create application specifications such as the location of their repository, environment variables, and service claims.
 
-As this workshop is focused on the operator experience, a Workload is already applied to the namespaces created for this workshop session. 
+As this workshop is focused on the operator experience, a Workload is already applied to the namespace created for this workshop session. 
 Let's have closer look at how a Workload allows developers to pass information about an application to be delivered through the supply chain.

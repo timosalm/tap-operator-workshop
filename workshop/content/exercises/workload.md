@@ -19,7 +19,7 @@ kubectl apply -f workload.yaml
 
 The sample Workload for this workshop is applied via **GitOps** and available here:
 ```dashboard:open-url
-url: https://github.com/tsalm-vmware/tap-operator-workshop/blob/main/samples/workload.yaml
+url: https://github.com/tsalm-vmware/tap-operator-workshop/blob/main/samples/workload-gitops/workload.yaml
 ```
 
 GitOps is a operational model that uses Git repositories as a single source of truth to version and store infrastructure configuration. The configuration is pulled continously by tools like in this case [kapp-controller](https://carvel.dev/kapp-controller/) or [Flux](https://fluxcd.io) to ensure the infrastructure is correctly configured.
@@ -57,7 +57,7 @@ url: https://carvel.dev/kapp-controller/
 
 The kapp-controller's `App` CRD is used to provide all neccesary configuration to continuously fetch Workload configuration from the Git repository and apply it to the workshops namespace.
 ```execute
-kubectl descibe apps workload-gitops
+kubectl describe apps workload-gitops
 ```
 
 Let's check the current status of the applied Workload with the tanzu CLI before moving on.

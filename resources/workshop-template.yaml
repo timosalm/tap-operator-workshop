@@ -28,5 +28,103 @@ spec:
     env: 
     - name: TAP_INGRESS
       value: #@ data.values.tap.ingress_domain
-    objects: []
+    objects:
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: default-permit-deliverable
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: deliverable
+      subjects:
+        - kind: ServiceAccount
+          name: default
+          namespace: $(session_namespace)
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: default-permit-workload
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: ClusterRole
+        name: workload
+      subjects:
+        - kind: ServiceAccount
+          name: default
+          namespace: $(session_namespace)
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: Role
+      metadata:
+        name: workload-gitops
+        namespace: $(session_namespace)
+      rules:
+      - apiGroups:
+        - carto.run
+        resources:
+        - workloads
+        verbs:
+        - '*'
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: default-workload-gitops
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: workload-gitops
+      subjects:
+        - kind: ServiceAccount
+          name: default
+          namespace: $(session_namespace)
+    # Permissions for workshop session
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: Role
+      metadata:
+        name: $(session_namespace)-session
+        namespace: $(session_namespace)
+      rules:
+      - apiGroups:
+        - kappctrl.k14s.io
+        resources:
+        - apps
+        verbs:
+        - 'get'
+        - 'list'
+      - apiGroups:
+        - carto.run
+        resources:
+        - workloads
+        verbs:
+        - 'get'
+        - 'list'
+    - apiVersion: rbac.authorization.k8s.io/v1
+      kind: RoleBinding
+      metadata:
+        name: $(session_namespace)-session-rb
+        namespace: $(session_namespace)
+      roleRef:
+        apiGroup: rbac.authorization.k8s.io
+        kind: Role
+        name: $(session_namespace)-session-role
+      subjects:
+        - kind: ServiceAccount
+          namespace: $(workshop_namespace)
+          name: $(service_account)
+    # Resources
+    - apiVersion: kappctrl.k14s.io/v1alpha1
+      kind: App
+      metadata:
+        name: workload-gitops
+      spec:
+        serviceAccountName: default
+        fetch:
+        - git:
+            url: https://github.com/tsalm-vmware/tap-operator-workshop.git
+            ref: origin/main
+            subPath: samples/workload-gitops
+        template:
+        - ytt: {}
+        deploy:
+        - kapp: {}
       
