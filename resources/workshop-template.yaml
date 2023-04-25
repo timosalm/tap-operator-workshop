@@ -106,7 +106,16 @@ spec:
         verbs:
         - 'get'
         - 'list'
-        - ''
+      - apiGroups:
+        - scanning.apps.tanzu.vmware.com
+        resources:
+        - scanpolicies
+        verbs:
+        - 'get'
+        - 'list'
+        - 'create'
+        - 'update'
+        - 'patch'
     - apiVersion: rbac.authorization.k8s.io/v1
       kind: ClusterRoleBinding
       metadata:
@@ -120,6 +129,42 @@ spec:
         - kind: ServiceAccount
           namespace: $(workshop_namespace)
           name: $(service_account)
+    # Install grype
+    - apiVersion: packaging.carvel.dev/v1alpha1
+      kind: PackageInstall
+      metadata:
+        name: $(session_namespace)-grype
+        namespace: tap-install
+      spec:
+        serviceAccountName: tap-install-sa
+        packageRef:
+          refName: grype.scanning.apps.tanzu.vmware.com
+          versionSelection:
+            constraints: ">=0.0.0"
+            prereleases:
+              identifiers: [beta, build]
+        values:
+        - secretRef:
+            name: $(session_namespace)-grype-values
+    - apiVersion: v1
+      kind: Secret
+      metadata:
+        name: $(session_namespace)-grype-values
+        namespace: tap-install
+      stringData:
+        values.yaml: |
+          ---
+          namespace: $(session_namespace)
+          targetImagePullSecret: registry-credentials
+    - apiVersion: v1
+      data:
+        ca.crt: #@ data.values.metadatastore.app_tls_cert.ca_crt_base64
+        tls.crt: #@ data.values.metadatastore.app_tls_cert.tls_crt_base64
+        tls.key: #@ data.values.metadatastore.app_tls_cert.tls_key_base64
+      kind: Secret
+      metadata:
+        name: app-tls-cert
+      type: kubernetes.io/tls
     # Resources
     - apiVersion: v1
       kind: Secret
