@@ -4,3 +4,4 @@
 ./install.sh
 ./README.md
 ./values-example.yaml
+./.dockerignore
