@@ -1,0 +1,7 @@
+modules:
+    workshop-overview:
+        name: Workshop Overview
+        exit_sign: Workshop Summary
+    workshop-summary:
+        name: Workshop Summary
+        exit_sign: End Workshop

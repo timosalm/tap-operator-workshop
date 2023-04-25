@@ -1,0 +1,5 @@
+name: Developer Workshop
+modules:
+  activate:
+    - workshop-overview
+    - workshop-summary

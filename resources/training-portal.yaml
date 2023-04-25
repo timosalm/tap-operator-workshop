@@ -1,0 +1,25 @@
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
+kind: TrainingPortal
+metadata:
+  name: tap-operator-workshops
+  annotations:
+    kapp.k14s.io/update-strategy: always-replace
+spec:
+  portal:
+    title: Workshops for TAP operators
+    registration:
+      type: one-step
+      enabled: false
+    ingress:
+        hostname: tap-operator-workshops
+    updates:
+      workshop: true
+    sessions:
+      maximum: 50
+    reserved: 0
+  workshops:
+    - name: tap-operator-workshop
+      capacity: 50
+      reserved: 0
+      expires: 2h
+      orphaned: 1h

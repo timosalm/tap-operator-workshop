@@ -1,0 +1,9 @@
+#@data/values
+---
+container_registry:
+  hostname: harbor.example.com
+workshop_git:
+  username: tsalm-vmware
+  branch: main
+tap:
+  ingress_domain: example.com

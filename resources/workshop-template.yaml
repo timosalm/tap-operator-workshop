@@ -1,0 +1,31 @@
+#@ load("@ytt:data", "data")
+---
+apiVersion: learningcenter.tanzu.vmware.com/v1beta1
+kind: Workshop
+metadata:
+  name: tap-operator-workshop
+spec:
+  title: TAP for Operators
+  description: A workshop that demonstrates capabilities of VMware Tanzu Application Platform for operators.
+  vendor: tanzu.vmware.com
+  difficulty: beginner
+  duration: 60m
+  url: https://github.com/tsalm-pivotal/tap-operator-workshop
+  content:
+    image: #@ "{}/tap-workshop/tap-operator-workshop:latest".format(data.values.container_registry.hostname)
+    files: #@ "github.com/{}/tap-operator-workshop?ref={}".format(data.values.workshop_git.username,data.values.workshop_git.branch)
+  session:
+    namespaces:
+      budget: custom
+    applications:
+      terminal:
+        enabled: true
+      console:
+        enabled: true
+      editor:
+        enabled: true
+    env: 
+    - name: TAP_INGRESS
+      value: #@ data.values.tap.ingress_domain
+    objects: []
+      
