@@ -6,7 +6,7 @@ modules:
         name: Pre-paved Path to Production
         exit_sign: Workload
     exercises/workload:
-        name: Configure a continous path to production
+        name: Configure a Continous Path to Production for an Application
         exit_sign: End Workshop
     workshop-summary:
         name: Workshop Summary
