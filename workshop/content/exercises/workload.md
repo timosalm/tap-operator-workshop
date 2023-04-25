@@ -20,7 +20,7 @@ kubectl apply -f workload.yaml
 The sample Workload for this workshop is applied via **GitOps**.
 GitOps is a operational model that uses Git repositories as a single source of truth to version and store infrastructure configuration. The configuration is pulled continously by tools like in this case [kapp-controller](https://carvel.dev/kapp-controller/) or [Flux](https://fluxcd.io) to ensure the infrastructure is correctly configured.
 
-The benefit of using this operational model for the Workload is, that developer don't need access to the Kubernetes cluster, and once a change is triggered in Git by a developer, it's applied to the environment with little or no involvement from operations.
+The benefit of using this operational model for the Workload is, that **developers don't need access to the Kubernetes cluster**, and once a change is triggered in Git by a developer, it's applied to the environment with little or no involvement from operations.
 
 
 

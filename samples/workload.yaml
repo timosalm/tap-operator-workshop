@@ -1,0 +1,29 @@
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: payment-service
+  labels:
+    app.kubernetes.io/part-of: payment-service
+    apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
+spec:
+  source:
+    git:
+      url: https://github.com/tsalm-vmware/tap-workshops-payment-service.git
+      ref:
+        branch: main
+  serviceClaims:
+  - name: config-server
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: configserver-binding-compatible
+  - name: observability
+    ref:
+      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
+      kind: ResourceClaim
+      name: observability-binding-compatible
+  build:
+    env:
+    - name: BP_JVM_VERSION
+      value: "17"
