@@ -23,7 +23,13 @@ GitOps is a operational model that uses Git repositories as a single source of t
 The benefit of using this operational model for the Workload is, that **developers don't need access to the Kubernetes cluster**, and once a change is triggered in Git by a developer, it's applied to the environment with little or no involvement from operations.
 
 
-
+```dashboard:create-dashboard
+name: Workload
+url: https://github.com/tsalm-vmware/tap-operator-workshop/blob/main/samples/workload.yaml
+```
+```dashboard:delete-dashboard
+name: Workload
+```
 
 
 
