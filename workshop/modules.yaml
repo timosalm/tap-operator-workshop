@@ -1,7 +1,10 @@
 modules:
     workshop-overview:
         name: Workshop Overview
-        exit_sign: Workshop Summary
+        exit_sign: Path to Prod
+    exercises/prepaved-path-to-prod:
+        name: Pre-paved Path to Production
+        exit_sign: End Workshop
     workshop-summary:
         name: Workshop Summary
         exit_sign: End Workshop

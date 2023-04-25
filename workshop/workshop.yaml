@@ -2,4 +2,5 @@ name: Developer Workshop
 modules:
   activate:
     - workshop-overview
+    - exercises/prepaved-path-to-prod
     - workshop-summary

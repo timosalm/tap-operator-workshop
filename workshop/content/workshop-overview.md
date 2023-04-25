@@ -7,4 +7,4 @@ and gives development teams an interface where they only have to define the requ
 
 ![TAP removes the burden from the developers](images/app-aware.png)
 
-The goal of this interactive workshop is to give you an overview of the capabilities of VMware Tanzu Application Platform most relevant for operators and the different components that provide them.
+The goal of this interactive workshop is to give you an overview of the capabilities of VMware Tanzu Application Platform most relevant for operators and the different components that provide those.
