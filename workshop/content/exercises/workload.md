@@ -43,11 +43,26 @@ file: ~/samples/workload.yaml
 text: "app.kubernetes.io/part-of: payment-service"
 ```
 
-TODO
+**TODO**
 
 There are more configuration options available like for example a container image or maven artifacts available. A detailed specification is available here:
 ```dashboard:open-url
 url: https://cartographer.sh/docs/v0.7.0/reference/workload/
 ```
 
-To provide an even higher abstraction than via GitOps for the developers, you could also create a self-service portal for developers on top of it via Aria Automation or ServiceNow.
+The GitOps for the Workload is in our workshop implemented using Carvel's **kapp-controller** running in the cluster. kapp-controller is also used for the installation of VMware Tanzu Application Platform.
+```dashboard:open-url
+url: https://carvel.dev/kapp-controller/
+```
+
+The kapp-controller's `App` CRD is used to provide all neccesary configuration to continuously fetch Workload configuration from the Git repository and apply it to the workshops namespace.
+```execute
+kubectl descibe apps workload-gitops
+```
+
+Let's check the current status of the applied Workload with the tanzu CLI before moving on.
+```execute
+tanzu apps workload get payment-service
+```
+
+To provide an even higher abstraction than applying the Workload configuration via GitOps for the developers, you could also create a **self-service portal for developers** on top of it via [VMware Aria Automation](https://www.vmware.com/products/aria-automation.html) or ServiceNow.
