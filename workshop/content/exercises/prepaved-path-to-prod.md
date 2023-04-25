@@ -12,7 +12,7 @@ The CI/CD tools universe is always in flux, but most of the solutions pose 
 - The **developer experience is lacking**.
 
 ###### Introducing Cartographer - A Supply Chain Choreographer for Kubernetes
-![Cartographer - A Supply Chain Choreographer for Kubernetes](../images/cartographer-logo.png)
+![Cartographer - A Supply Chain Choreographer for Kubernetes](../images/cartographer-logo.svg)
 
 VMware Tanzu Application Platform uses the open-source Cartographer that allows developers to focus on delivering value to their users and provides operators the assurance that all code in production has passed through all the steps of a pre-approved path to production.
 
