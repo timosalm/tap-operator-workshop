@@ -27,19 +27,15 @@ GitOps is a operational model that uses Git repositories as a single source of t
 The benefit of using this operational model for the Workload is, that **developers don't need access to the Kubernetes cluster**, and once a change is triggered in Git by a developer, it's applied to the environment with little or no involvement from operations.
 
 Let's have a closer look at the sample Workload avaiable in the GitOps repository in our local IDE.
-```editor:open-file
-file: ~/samples/workload.yaml
+```editor:select-matching-text
+file: ~/samples/workload-gitops/workload.yaml
+text: "name: payment-service"
 ```
 As already mentioned, a **Workload is a Kubernetes custom resource definition (CRD) of Cartographer** that implements the interface for developers to provide configuration for an application's path to production.
 
-In addition to the name of the Workload ...
+In addition to the name of the Workload, there is also `app.kubernetes.io/part-of` label with the same value, which is used by for example the TAP GUI to match documentation with runtime resources.
 ```editor:select-matching-text
-file: ~/samples/workload.yaml
-text: "name: payment-service"
-```
-... there is also `app.kubernetes.io/part-of` label with the same value, which is used by for example the TAP GUI to match documentation with runtime resources.
-```editor:select-matching-text
-file: ~/samples/workload.yaml
+file: ~/samples/workload-gitops/workload.yaml
 text: "app.kubernetes.io/part-of: payment-service"
 ```
 
