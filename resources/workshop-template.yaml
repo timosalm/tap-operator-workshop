@@ -79,10 +79,9 @@ spec:
           namespace: $(session_namespace)
     # Permissions for workshop session
     - apiVersion: rbac.authorization.k8s.io/v1
-      kind: Role
+      kind: ClusterRole
       metadata:
-        name: $(session_namespace)-session
-        namespace: $(session_namespace)
+        name: $(session_namespace)-session-cr
       rules:
       - apiGroups:
         - kappctrl.k14s.io
@@ -99,14 +98,14 @@ spec:
         - 'get'
         - 'list'
     - apiVersion: rbac.authorization.k8s.io/v1
-      kind: RoleBinding
+      kind: ClusterRoleBinding
       metadata:
         name: $(session_namespace)-session-rb
         namespace: $(session_namespace)
       roleRef:
         apiGroup: rbac.authorization.k8s.io
-        kind: Role
-        name: $(session_namespace)-session-role
+        kind: ClusterRole
+        name: $(session_namespace)-session-cr
       subjects:
         - kind: ServiceAccount
           namespace: $(workshop_namespace)

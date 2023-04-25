@@ -53,7 +53,7 @@ url: https://carvel.dev/kapp-controller/
 
 The kapp-controller's `App` CRD is used to provide all neccesary configuration to continuously fetch Workload configuration from the Git repository and apply it to the workshops namespace.
 ```execute
-kubectl describe apps workload-gitops
+kubectl get apps workload-gitops
 ```
 
 Let's check the current status of the applied Workload with the tanzu CLI before moving on.
