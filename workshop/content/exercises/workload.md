@@ -40,19 +40,14 @@ text: "name: payment-service"
 ... there is also `app.kubernetes.io/part-of` label with the same value, which is used by for example the TAP GUI to match documentation with runtime resources.
 ```editor:select-matching-text
 file: ~/samples/workload.yaml
-text: "app.kubernetes.io/part-of: payment-service
-"
+text: "app.kubernetes.io/part-of: payment-service"
 ```
 
+TODO
 
+There are more configuration options available like for example a container image or maven artifacts available. A detailed specification is available here:
+```dashboard:open-url
+url: https://cartographer.sh/docs/v0.7.0/reference/workload/
+```
 
-
-
-
-
-If developers have 
-
-
-You can find a detailed specification here:
-
-
+To provide an even higher abstraction than via GitOps for the developers, you could also create a self-service portal for developers on top of it via Aria Automation or ServiceNow.
