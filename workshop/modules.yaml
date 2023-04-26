@@ -24,7 +24,7 @@ modules:
         name: Multicluster Topology
         exit_sign: Installation
     exercises/installation: 
-        name: Installation of VMware Tanzu Application Platform
+        name: Installation and Day2 of VMware Tanzu Application Platform
         exit_sign: Summary
     workshop-summary:
         name: Workshop Summary
