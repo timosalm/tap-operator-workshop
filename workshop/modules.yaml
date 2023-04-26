@@ -9,8 +9,11 @@ modules:
         name: Configure a Continous Path to Production for an Application
         exit_sign: Supply Chains
     exercises/supply-chains:
-        name: Deliver Software to Production Quickly and Securely
-        exit_sign: End Workshop        
+        name: Author a Continous and Secure Path to Production
+        exit_sign: Continous Integration 
+    exercises/path-to-prod-ci:
+        name: Continous Integration in the Path to Production
+        exit_sign: End Workshop  
     workshop-summary:
         name: Workshop Summary
         exit_sign: End Workshop

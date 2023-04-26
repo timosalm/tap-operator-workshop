@@ -33,10 +33,10 @@ As the OOTB Supply Chain with Testing and Scanning provides the most capabilitie
 
 A `ClusterSupplyChain` is Cartographer's CRD to define a supply chain. We'll now export the OOTB Supply Chain with Testing and Scanning from the cluster to view in the workshop's IDE.
 ```execute
-kubectl eksporter ClusterSupplyChain source-test-scan-to-url > supply-chain.yaml
+kubectl eksporter ClusterSupplyChain source-test-scan-to-url > ~/exports/supply-chain.yaml
 ```
 ```editor:open-file
-file: ~/supply-chain.yaml
+file: ~/exports/supply-chain.yaml
 ```
 Any changes made to this custom resource in the cluster will immediately affect the path to production of the Workloads configured for it. Due to the asynchronouns behavior of Cartographer only those steps that are affected by the change and related outputs will be triggered. 
 
@@ -45,7 +45,7 @@ The first part of our supply chain resource configures parameters via `.spec.par
 The `.spec.resources` section is an unordered list of steps (or resources) of our supply chain even if they are ordered in this example for readability.
 
 ```editor:select-matching-text
-file: ~/supply-chain.yaml
+file: ~/exports/supply-chain.yaml
 text: "- name: source-tester"
 after: 6
 ```
@@ -57,7 +57,7 @@ The first three of the **templates define a contract for the output** to be cons
 We can also see in the example how inputs from other resources can be defined. In this case the resource is listening on outputs from the `source-provider`'s ClusterSourceTemplate. Image inputs can be defined via `.spec.resources[*].images` and  Config inputs `.spec.resources[*].configs`.
 
 ```editor:select-matching-text
-file: ~/supply-chain.yaml
+file: ~/exports/supply-chain.yaml
 text: "apps.tanzu.vmware.com/has-tests: 'true'"
 before: 1
 after: 8
@@ -69,3 +69,5 @@ We'll know have a closer look at all the different steps of the supply chain and
 ```dashboard:open-url
 url: https://tap-gui.{{ ENV_TAP_INGRESS }}/supply-chain/host/{{ session_namespace }}/payment-service
 ```
+
+Let's first have a look at the Continuous integration (CI) part of the supply chain, which automates the process of building and testing the application we like to deploy.

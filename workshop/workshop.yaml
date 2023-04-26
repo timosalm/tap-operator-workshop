@@ -5,4 +5,5 @@ modules:
     - exercises/prepaved-path-to-prod
     - exercises/workload
     - exercises/supply-chains
+    - exercises/path-to-prod-ci
     - workshop-summary

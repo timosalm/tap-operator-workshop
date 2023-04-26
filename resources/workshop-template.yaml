@@ -93,16 +93,9 @@ spec:
         - 'get'
         - 'list'
       - apiGroups:
-        - carto.run
-        resources:
-        - workloads
-        verbs:
-        - 'get'
-        - 'list'
-      - apiGroups:
         - tekton.dev
         resources:
-        - pipelines
+        - '*'
         verbs:
         - 'get'
         - 'list'
@@ -125,7 +118,7 @@ spec:
       - apiGroups:
         - "carto.run"
         resources:
-        - clustersupplychains
+        - "*"
         verbs:
         - 'get'
         - 'list'
