@@ -181,7 +181,7 @@ spec:
       kind: Secret
       metadata:
         annotations:
-          tekton.dev/git-0: #@ base64.encode(data.values.gitops.host)
+          tekton.dev/git-0: #@ data.values.gitops.host
         name: git-https
       data:
         username: #@ base64.encode(data.values.gitops.username)
