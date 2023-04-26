@@ -128,12 +128,6 @@ Conventions can use this information to only apply changes to the configuration 
 
 Conventions **can also be defined** to apply to workloads **without targeting container image metadata**. Examples of possible uses of this type of convention include appending a logging/metrics sidecar, adding environment variables, or adding cached volumes. 
 
-The conditional criteria governing the application of a convention is customizable and can be based on the evaluation of a custom Kubernetes resource called **PodIntent**.
-```terminal:execute
-command: kubectl get PodIntent -o yaml
-clear: true
-```
-
 With the current version on TAP, the following **out of the box conventions** are available with more to come in future versions.
 ```terminal:execute
 command: kubectl get ClusterPodConvention
@@ -141,6 +135,15 @@ clear: true
 ```
 - **Developer conventions** is a set of conventions that enable workloads to support live-update and debug operations
 - **Spring Boot conventions** are smaller conventions applied to any Spring Boot application submitted to the supply chain. Most them either modify or add properties to the environment variable `JAVA_TOOL_OPTIONS` like for example to configure graceful shutdown and the default port to 8080 
+- **Application Live View conventions** help to identify pods that are enabled for Application Live View. The metadata labels also tell the Application Live View connector what kind of app it is, and on which port the actuators are accessible for Application Live View.
+
+The conditional criteria governing the application of a convention is customizable and can be based on the evaluation of a custom Kubernetes resource called **PodIntent**.
+```terminal:execute
+command: kubectl get PodIntent -o yaml
+clear: true
+```
+In `.status.template.spec` you can see information about the generated Pod template. The `conventions.carto.run/applied-conventions` annotation in `.status.template.metadata.annotation` lists all the applied conventions.
+
 
 ##### Config Writer 
 

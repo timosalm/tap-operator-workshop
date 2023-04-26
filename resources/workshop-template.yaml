@@ -175,8 +175,7 @@ spec:
         name: registry-credentials
       type: kubernetes.io/dockerconfigjson
       data:
-        #@ docker_auth = base64.encode("{}:{}".format(data.values.container_registry.username, data.values.container_registry.password))
-        #@ docker_creds = {"username": data.values.container_registry.username, "password": data.values.container_registry.password, "auth": docker_auth}
+        #@ docker_creds = {"username": data.values.container_registry.username, "password": data.values.container_registry.password}
         .dockerconfigjson: #@ base64.encode(json.encode({"auths": {data.values.container_registry.hostname: docker_creds}}))
     - apiVersion: v1
       kind: Secret
