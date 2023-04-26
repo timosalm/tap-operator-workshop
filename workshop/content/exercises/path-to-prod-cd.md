@@ -175,7 +175,38 @@ After generating the YAML of all the Kubernetes resource required to run the app
 The Config Writer is responsible for writing the YAML files either to a Git repository for **GitOps** or as an alternative packaging them in a container image and pushing it to a container registry for **RegistryOps**.
 
 **The workshop environment is configured for GitOps.**
-In **detail view of the Config Writer step in TAP-GUI**, click on the **button to approve the pull request** that was auto-created by TAP to merge the changes to the prod branch of the GitOps repositorys. 
+In **detail view of the Config Writer step in TAP-GUI**, click on the **approve pull request button** that was auto-created by TAP to merge the changes to a in the configuration specified branch of the GitOps repositorys. In this case the **Git branches are used for staging** and we are directly merging in the prod branch.
 For demo purpose, this pull request was auto approved and merged.
 
 ##### Delivery
+With the deployment configuration of our application available in a Git repository, we are now able to deploy it automatically to a fleet of clusters on every change. There are several tools for this job available, like ArgoCD or Carvel's kapp-controller.
+
+**Cartographer** also **provides a way to define a continuous delivery workflow** resource on the target cluster which e.g. picks up that configuration from the Git repository deploys it and runs some automated integration tests which is called **ClusterDelivery**.
+
+A ClusterDelivery is analogous to SupplyChain, in that it specifies a list of resources that are created when requested by the developer. Early resources in the delivery are expected to configure the k8s environment (for example, by deploying an application). Later resources validate the environment is healthy. A **ClusterDeploymentTemplate** indicates how the ClusterDelivery should configure the environment. A **Deliverable** is the interface for the operator to pass information about the configuration to be applied to the environment to the ClusterDelivery.
+
+For the sake of simplicity, our applcation is deployed to the same cluster we used for building it. 
+Let's fist have a look at the Deliverable which is in this case automatically created and applied to the cluster.
+```terminal:execute
+command: kubectl eksporter deliverable --keep metadata.labels
+clear: true
+```
+As you can see, it looks similar to a workload. Instead of the Git repository of the sourcecode, it references the GitOps repository. You may also assume that the `app.tanzu.vmware.com/deliverable-type: web` will be used as a selector for the ClusterDelivery.
+
+```terminal:execute
+command: kubectl eksporter clusterdelivery delivery-basic > ~/exports/delivery.yaml
+clear: true
+```
+```editor:open-file
+file: ~/exports/delivery.yaml
+```
+As you can see, the configuration of the ClusterDeliveries looks similar to ClusterSupplychain. You can specify the type of Deliverable they accept through the `spec.selector`, `spec.selectorMatchExpressions`, and `selectorMatchFields` fields and all of the resources via `spec.resources`.
+
+ClusterSourceTemplates and ClusterTemplates are valid for ClusterDelivery. It additionally has the resource ClusterDeploymentTemplate. 
+```terminal:execute
+command: kubectl eksporter clusterdeploymenttemplate app-deploy
+clear: true
+```
+
+With the **OOTB Delivery of TAP**, the GitOps repository will be watched for changes with the **Flux Source Controller** and the provided source code will be applied via **kapp-controller**.
+**kapp-controller** could be also used to directly fetch and apply the contents of the GitOps repository but the this implementation should make it easy to add additional steps to the ClusterDelivery.
