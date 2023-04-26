@@ -38,6 +38,12 @@ VMware Tanzu Application Platform makes it easy as possible to discover, curate,
 This experience is made possible by using the **Services Toolkit** component. 
 
 
+
+
+Other runtime components of VMware Tanzu Application Platform like **Application Live View, VMware Spring Cloud Gateway for Kubernetes, Application Configuration Service, Application Single Sign-On, and Contour will not be covered in this workshop**.
+
+
+-----
 **TODO**
 
 

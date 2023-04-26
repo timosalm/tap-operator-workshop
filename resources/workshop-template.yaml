@@ -102,12 +102,21 @@ spec:
         - 'get'
         - 'list'
       - apiGroups:
+        - data.packaging.carvel.dev
+        resources:
+        - packagemetadatas
+        verbs:
+        - 'get'
+        - 'list'
+      - apiGroups:
         - tekton.dev
         - kpack.io
         - carto.run
         - scanning.apps.tanzu.vmware.com
         - conventions.carto.run
         - serving.knative.dev
+        - packaging.carvel.dev
+        - pkg.crossplane.io
         resources:
         - '*'
         verbs:
