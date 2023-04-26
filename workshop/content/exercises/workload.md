@@ -62,3 +62,5 @@ tanzu apps workload get payment-service
 ```
 
 To provide an even higher abstraction than applying the Workload configuration via GitOps for the developers, you could also create a **self-service portal for developers** on top of it via [VMware Aria Automation](https://www.vmware.com/products/aria-automation.html) or ServiceNow.
+
+After having a look at the Workload as an interface for developers, in the next sections we'll have a closer look at the operator facing supply chains.

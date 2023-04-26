@@ -13,8 +13,3 @@ gitops:
   host: https://github.com
   username: user
   password: ""
-metadatastore:
-  app_tls_cert:
-    ca_crt_base64: ""
-    tls_crt_base64: ""
-    tls_key_base64: ""

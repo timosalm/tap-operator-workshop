@@ -7,7 +7,10 @@ modules:
         exit_sign: Workload
     exercises/workload:
         name: Configure a Continous Path to Production for an Application
-        exit_sign: End Workshop
+        exit_sign: Supply Chains
+    exercises/supply-chains:
+        name: Cloud Native Supply Chains
+        exit_sign: End Workshop        
     workshop-summary:
         name: Workshop Summary
         exit_sign: End Workshop

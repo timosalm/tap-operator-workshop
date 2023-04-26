@@ -121,9 +121,6 @@ spec:
         resources:
         - namespaces
         verbs:
-        - 'get'
-        - 'list'
-        - 'update'
         - 'patch'
     - apiVersion: rbac.authorization.k8s.io/v1
       kind: ClusterRoleBinding
