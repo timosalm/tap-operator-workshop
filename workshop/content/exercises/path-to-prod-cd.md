@@ -207,9 +207,12 @@ As you can see, the configuration of the ClusterDeliveries looks similar to Clus
 
 ClusterSourceTemplates and ClusterTemplates are valid for ClusterDelivery. It additionally has the resource ClusterDeploymentTemplate. 
 ```terminal:execute
-command: kubectl eksporter clusterdeploymenttemplate app-deploy
+command: kubectl eksporter clusterdeploymenttemplate app-deploy | less
 clear: true
 ```
+A **ClusterDeploymentTemplate** must specify criteria to determine whether the templated object has successfully completed its role in configuring the environment. Once the criteria are met, the ClusterDeploymentTemplate will output the deployment values. The criteria may be specified in `spec.observedMatches` or in `spec.observedCompletion`.
 
 With the **OOTB Delivery of TAP**, the GitOps repository will be watched for changes with the **Flux Source Controller** and the provided source code will be applied via **kapp-controller**.
 **kapp-controller** could be also used to directly fetch and apply the contents of the GitOps repository but the this implementation should make it easy to add additional steps to the ClusterDelivery.
+
+After we've finally had a look at all the different steps of TAP's OOTB supply chain, it's time for some information about components that are relevant for the running application.
