@@ -13,3 +13,5 @@ gitops:
   host: https://github.com
   username: user
   password: ""
+metadatastore:
+  accesstoken: 

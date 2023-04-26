@@ -30,6 +30,8 @@ spec:
     env: 
     - name: TAP_INGRESS
       value: #@ data.values.tap.ingress_domain
+    - name: METADATA_STORE_ACCESS_TOKEN
+      value: #@ data.values.metadatastore.accesstoken
     objects:
     - apiVersion: rbac.authorization.k8s.io/v1
       kind: RoleBinding
