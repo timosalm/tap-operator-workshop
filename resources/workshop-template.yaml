@@ -99,6 +99,7 @@ spec:
         - kpack.io
         - carto.run
         - scanning.apps.tanzu.vmware.com
+        - conventions.carto.run
         resources:
         - '*'
         verbs:

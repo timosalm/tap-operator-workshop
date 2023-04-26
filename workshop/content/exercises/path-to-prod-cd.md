@@ -76,9 +76,9 @@ There are several reason for that:
 - The **container image includes the full stack** required to run the application. In this case the application, Tomcat application server, Java runtime environment, operating system, and additonal tools. 
 - The container image also **includes all the dependencies** required to run the application. To reduce disc space and network traffic, those will usually not be committed to the version control system together with the sourcecode and instead defined in dependency management tools like Maven or npm and downloaded during the build process. Most of the **CVE scanners don't download the dependencies** for sourcecode scans, **which leds often to false positives or missed CVEs**, as they only compare what's defined in the definition file of the used dependency management tools (e.g. pom.xml or package.json) with CVE databases. Therefore, they are for example not aware of nested dependencies.
 
-You may ask yourself whether there is still a value in source scans. The answer is yes, as shifting security left in the path to production improves the productivity of developers.
+You may ask yourself whether there is still a value in source scans. The answer is yes, as **shifting security left in the path to production improves the productivity of developers**.
 
-Due to the false positives it makes sense to have different scan policies for source scanning and image scanning which is supported by VMware Tanzu Application Platform but not implemented for this workshop.
+Due to the false positives it makes sense to have **different scan policies for source scanning and image scanning** which is supported by VMware Tanzu Application Platform but not implemented for this workshop.
 
 Let's first another time **change our scan policy for demo purposes** to see our application running through the rest of the path to production and then have another look at the SBoM which should now include information about the full container stack.
 
@@ -91,13 +91,56 @@ text: 'notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]'
 file: ~/samples/scan-policy.yaml
 text: 'notAllowedSeverities := ["UnknownSeverity"]'
 ```
-**Save the file, and run the following command to apply the updated scan policy.**
+**Run the following command to apply the updated scan policy.**
 ```execute
 kubectl apply -f ~/samples/scan-policy.yaml
 ```
+If you **go back to TAP-GUI**, you should see that the **status of the source and image scan will change** and the container image will be passed to the next step.
 
+###### Software bills of materials of the container image
+Run the following command to get a human readable output of the SBoM.
+```terminal:execute
+command: |
+  IMAGE_DIGEST=$(kubectl get imagescan payment-service -o jsonpath='{.spec.registry.image}'  | awk -F @ '{ print $2 }')
+  tanzu insight image get --digest $IMAGE_DIGEST
+clear: true
+```
+We can also change the **output format to common SBoM standards** like **SPDX and CycloneDX** which can be then used by tools that support them. 
+SPDX defines more granular relationships between elements, which makes it more expressive but also more complex to define and work with.
+```terminal:execute
+command: tanzu insight image get --digest $IMAGE_DIGEST --output-format cyclonedx-xml
+clear: true
+```
+```execute
+tanzu insight image get --digest $IMAGE_DIGEST --output-format spdx-json
+```
 
 ##### Config Provider, App Config, Service Bindings, Api Descriptors 
+
+The steps between "Image Scanner" and "Config Writer" in the supply chain generate the YAML of all the Kubernetes resource required to run the application.
+
+###### Config Provider
+
+The Config Provider step uses the **Cartographer Conventions** component to provide a means for operators to express their knowledge about how applications can run on Kubernetes as a convention. It supports defining and applying conventions to pods. 
+
+You can **define conventions** to target workloads by **using container image metadata**.
+Conventions can use this information to only apply changes to the configuration of workloads when they match specific criteria (for example, Spring Boot or .Net apps, or Spring Boot v2.3+). Targeted conventions can ensure uniformity across specific workload types deployed on the cluster.
+
+Conventions **can also be defined** to apply to workloads **without targeting container image metadata**. Examples of possible uses of this type of convention include appending a logging/metrics sidecar, adding environment variables, or adding cached volumes. 
+
+The conditional criteria governing the application of a convention is customizable and can be based on the evaluation of a custom Kubernetes resource called **PodIntent**.
+```terminal:execute
+command: kubectl get PodIntent -o yaml
+clear: true
+```
+
+With the current version on TAP, the following **out of the box conventions** are available with more to come in future versions.
+```terminal:execute
+command: kubectl get ClusterPodConvention
+clear: true
+```
+- **Developer conventions** is a set of conventions that enable workloads to support live-update and debug operations
+- **Spring Boot conventions** are smaller conventions applied to any Spring Boot application submitted to the supply chain. Most them either modify or add properties to the environment variable `JAVA_TOOL_OPTIONS` like for example to configure graceful shutdown and the default port to 8080 
 
 ##### Config Writer 
 
