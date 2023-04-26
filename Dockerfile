@@ -31,6 +31,8 @@ RUN apt install ruby-full -y
 # Utilities
 RUN apt-get update && apt-get install -y unzip moreutils
 
+RUN chown -R eduk8s:users /home/eduk8s/.config
+
 RUN rm -rf /tmp/*
 
 USER 1001

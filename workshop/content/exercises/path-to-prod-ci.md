@@ -1,5 +1,5 @@
 
-###### Source Provider
+##### Source Provider
 
 The first step in the path to production watches the in the Workload configured repository with the source code for new commits and makes the source code available for the following steps as an archive via HTTP. 
 
@@ -39,7 +39,7 @@ url: https://cartographer.sh/docs/v0.7.0/templating/
 
 You can view the **output of the Source Provider** step in TAP-GUI by clicking on the rectangle next to it displaying the first digits of the commit revision.
 
-###### Source Tester
+##### Source Tester
  
 The Source Tester step executes uses by default [Tekton](https://tekton.dev) and as an alternative Jenkins (more to come in the future) to run a Pipeline that executes tests part of the application's source code. 
 Depending on how much flexibility your developers need, they can define it for their applications or as the rest of the supply chain it will also be defined and provided by the operators. The pipeline can also be applied via GitOps, in our case there is already a very basic example that just works for Spring Boot applications using Maven applied to the cluster.
@@ -60,7 +60,7 @@ url: https://cartographer.sh/docs/v0.7.0/tutorials/lifecycle/
 
 Let's now jump to **TAP-GUI to view the logs of test run** in the detail view of the Source Tester step.
 
-###### Source Scanner
+##### Source Scanner
 
 In the next step the provided **source code will be scanned** for known vulnerabilities by default using [Grype](https://github.com/anchore/grype). VMware Tanzu Application platform also provides integrations to other scanners like **Trivy** or **Snyk**.
 
@@ -88,12 +88,12 @@ command: kubectl describe sourcescan payment-service
 clear: true
 ```
 
-####### Storing the software bills of materials (SBoMs)
+###### Storing the software bills of materials (SBoMs)
 The resulting source code vulnerability reports will be automatically stored to a database which allows us to query for image, source code, package, and vulnerability relationships via an API and the tanzu CLI's insight plugin. The so called **Metadata Store** accepts CycloneDX input and outputs in both human-readable and machine-readable formats, including JSON, text, CycloneDX, and SPDX.
 
 ```terminal:execute
 command: |
-  IMAGE_DIGEST=$(kubectl get sourcescan payment-service -o jsonpath='{.spec.blob.revision}'}'
+  IMAGE_DIGEST=$(kubectl get sourcescan payment-service -o jsonpath='{.spec.blob.revision}')
   tanzu insight source get --commit $IMAGE_DIGEST
 clear: true
 ```
