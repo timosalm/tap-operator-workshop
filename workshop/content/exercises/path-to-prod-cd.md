@@ -175,6 +175,7 @@ After generating the YAML of all the Kubernetes resource required to run the app
 The Config Writer is responsible for writing the YAML files either to a Git repository for **GitOps** or as an alternative packaging them in a container image and pushing it to a container registry for **RegistryOps**.
 
 **The workshop environment is configured for GitOps.**
-If you click on the Config Writer in TAP-GUI, you can see a button to open the pull request for the changes in the Git repository that was auto-created by TAP. 
+In **detail view of the Config Writer step in TAP-GUI**, click on the **button to approve the pull request** that was auto-created by TAP to merge the changes to the prod branch of the GitOps repositorys. 
+For demo purpose, this pull request was auto approved and merged.
 
 ##### Delivery

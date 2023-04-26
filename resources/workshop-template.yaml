@@ -183,6 +183,7 @@ spec:
         annotations:
           tekton.dev/git-0: #@ data.values.gitops.host
         name: git-https
+      type: kubernetes.io/basic-auth
       stringData:
         username: #@ data.values.gitops.username
         password: #@ data.values.gitops.password
