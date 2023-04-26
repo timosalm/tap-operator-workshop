@@ -120,3 +120,5 @@ kubectl apply -f ~/samples/scan-policy.yaml
 
 If you **go back to TAP-GUI**, you should see that the **status of the source scan will change** and the source code will be passed to the next step.
 This demonstrates the **asnychronous behavior of Cartographer**. As only the source scan is affected by the change, the steps before will not be executed again.
+
+In the next section, we will have a closer look at aspects like container building and continous delivery.

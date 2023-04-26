@@ -6,14 +6,17 @@ modules:
         name: Pre-paved Path to Production
         exit_sign: Workload
     exercises/workload:
-        name: Configure a Continous Path to Production for an Application
+        name: Configure a Continuous Path to Production for an Application
         exit_sign: Supply Chains
     exercises/supply-chains:
-        name: Author a Continous and Secure Path to Production
-        exit_sign: Continous Integration 
+        name: Author a Continuous and Secure Path to Production
+        exit_sign: Continuous Integration 
     exercises/path-to-prod-ci:
-        name: Continous Integration in the Path to Production
-        exit_sign: End Workshop  
+        name: Continuous Integration in the Path to Production
+        exit_sign: Continuous Delivery
+    exercises/path-to-prod-cd:
+        name: Continuous Delivery in the Path to Production
+        exit_sign: End Workshop 
     workshop-summary:
         name: Workshop Summary
         exit_sign: End Workshop
