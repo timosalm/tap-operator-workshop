@@ -183,9 +183,9 @@ spec:
         annotations:
           tekton.dev/git-0: #@ data.values.gitops.host
         name: git-https
-      data:
-        username: #@ base64.encode(data.values.gitops.username)
-        password: #@ base64.encode(data.values.gitops.password)
+      stringData:
+        username: #@ data.values.gitops.username
+        password: #@ data.values.gitops.password
     - apiVersion: kappctrl.k14s.io/v1alpha1
       kind: App
       metadata:
