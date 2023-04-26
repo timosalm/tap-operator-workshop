@@ -118,5 +118,5 @@ file: ~/exercises/sample.txt
 text: $CVE_IDS
 ```
 ```workshop:copy
-text: echo $CVE_IDS
+text: ignoreCves := [$(tanzu insight source vulnerabilities --commit $COMMIT_REVISION  --output-format api-json | jq '. | map(.CVEID) | join(",")' | sed 's/,/","/g')]
 ```
