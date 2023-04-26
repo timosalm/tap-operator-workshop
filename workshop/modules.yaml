@@ -19,9 +19,9 @@ modules:
         exit_sign: Application Runtime
     exercises/runtime:
         name: Capabilities of The Application Runtime
-        exit_sign: Multicluster Topology
+        exit_sign: Installation Topologies
     exercises/multi-cluster-architecture:
-        name: Multicluster Topology
+        name: VMware Tanzu Application Platform Installation Topologies
         exit_sign: Installation
     exercises/installation: 
         name: Installation and Day2 of VMware Tanzu Application Platform
