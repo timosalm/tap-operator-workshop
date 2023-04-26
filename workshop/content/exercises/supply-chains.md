@@ -13,7 +13,7 @@ TAP provides three out of the box (OOTB) supply chains that can be customized fo
 Capabilities of this supply chain: 
 - Monitors a repository that is identified in the developer’s Workload configuration
 - Creates a new container image out of source code
-- Generates the Kubernetes resources for the delpoyment of the application and applies predefined conventions to them
+- Generates the Kubernetes resources for the delpoyment of the application as YAML and applies predefined conventions to them
 - Deploys the application to the cluster
 
 ##### OOTB Supply Chain with Testing
@@ -27,7 +27,14 @@ Additional capabilities of this supply chain:
 - The application source code is scanned for vulnerabilities
 - The container image is scanned for vulnerabilities
 
+All of the OOTB supply chains also support a prebuilt application container image as an input instead of source code. In this case only the steps after the container image creation will be executed (e.g. image scanning, Kubernetes resources YAML generation, Deployment).
 
+As the OOTB Supply Chain with Testing and Scanning provides the most capabilities, we'll now have a closer look at the implementation and the different tools that provide all of them.
+
+A `ClusterSupplyChain` is Cartographer's CRD to define a supply chain. By exporting the OOTB Supply Chain with Testing and Scanning from the cluster, we can have a look at it in the local IDE.
+```execute
+kubectl eksporter ClusterSupplyChain source-test-scan-to-url
+```
 
 
 
