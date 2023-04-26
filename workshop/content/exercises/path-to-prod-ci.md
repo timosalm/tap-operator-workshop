@@ -105,18 +105,21 @@ Let's no try to get the step pass by white listing the severities for demo purpo
 command: |
   kubectl eksporter scanpolicy > ~/exports/scanpolicy.yaml
   CVE_IDS="ignoreCves := [$(tanzu insight source vulnerabilities --commit $COMMIT_REVISION  --output-format api-json | jq '. | map(.CVEID) | join(",")' | sed 's/,/","/g')]"
+  echo $CVE_IDS
 clear: true
 ```
+**Copy the output of the command.**
 
 ```editor:select-matching-text
 file: ~/exports/scanpolicy.yaml
 text: "ignoreCves := []"
 ```
 
-```editor:replace-text-selection
-file: ~/exercises/sample.txt
-text: $CVE_IDS
+**Paste the output of the command to override the current value and run the following command to apply the updated scan policy.**
+
+```execute
+kubectl apply -f ~/exports/scanpolicy.yaml
 ```
-```workshop:copy
-text: ignoreCves := [$(tanzu insight source vulnerabilities --commit $COMMIT_REVISION  --output-format api-json | jq '. | map(.CVEID) | join(",")' | sed 's/,/","/g')]
-```
+
+If you **go back to TAP-GUI**, you should see that the **status of the source scan will change** and the source code will be passed to the next step.
+This demonstrates the **asnychronous behavior of Cartographer**. As only the source scan is affected by the change, the steps before will not be executed again.
