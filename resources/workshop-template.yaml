@@ -96,6 +96,9 @@ spec:
         - 'list'
       - apiGroups:
         - tekton.dev
+        - kpack.io
+        - carto.run
+        - scanning.apps.tanzu.vmware.com
         resources:
         - '*'
         verbs:
@@ -117,20 +120,6 @@ spec:
         - namespaces
         verbs:
         - 'patch'
-      - apiGroups:
-        - "carto.run"
-        resources:
-        - "*"
-        verbs:
-        - 'get'
-        - 'list'
-      - apiGroups:
-        - "scanning.apps.tanzu.vmware.com"
-        resources:
-        - "*"
-        verbs:
-        - 'get'
-        - 'list'
       - apiGroups:
         - "apiextensions.k8s.io"
         resources:

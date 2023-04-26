@@ -16,7 +16,16 @@ modules:
         exit_sign: Continuous Delivery
     exercises/path-to-prod-cd:
         name: Continuous Delivery in the Path to Production
-        exit_sign: End Workshop 
+        exit_sign: Application Runtime
+    exercises/runtime:
+        name: Capabilities of The Application Runtime
+        exit_sign: Multicluster Topology
+    exercises/multi-cluster-architecture:
+        name: Multicluster Topology
+        exit_sign: Installation
+    exercises/installation: 
+        name: Installation of VMware Tanzu Application Platform
+        exit_sign: Summary
     workshop-summary:
         name: Workshop Summary
         exit_sign: End Workshop

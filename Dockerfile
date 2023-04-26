@@ -9,6 +9,10 @@ RUN mv $(find /tmp/ -name 'tanzu-core-linux_amd64' -print0) /usr/local/bin/tanzu
   tanzu plugin install --local /tmp/cli/ all && \
   chmod -R 755 .config/tanzu
 
+# TBS
+RUN curl -L -o /usr/local/bin/kp https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.10.0/kp-linux-amd64-0.10.0 && \
+  chmod 755 /usr/local/bin/kp
+
 # Install krew
 RUN \
 ( \
