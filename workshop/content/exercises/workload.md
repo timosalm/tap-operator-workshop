@@ -34,14 +34,15 @@ text: "name: payment-service"
 As already mentioned, a **Workload is a Kubernetes custom resource definition (CRD) of Cartographer** that implements the interface for developers to provide configuration for an application's path to production.
 
 In addition to the name of the Workload, there is also `app.kubernetes.io/part-of` label with the same value, which is used by for example the TAP GUI to match documentation with runtime resources.
-```editor:select-matching-text
-file: ~/samples/workload-gitops/workload.yaml
-text: "app.kubernetes.io/part-of: payment-service"
-```
 
-**TODO**
+The location of an application's source code can be configured via the `spec.source` field. Here, we are using a branch of a Git repository as a source to be able to implement a **continuous path to production** where every git commit to the codebase will trigger another execution of the supply chain, and developers only have to apply a Workload once if they start with a new application or microservice. 
+For the to-be-deployed application, the Workload custom resource also provides configuration options for a **pre-built image in a registry** from e.g. an ISV via `spec.image`.
 
-There are more configuration options available like for example a container image or maven artifacts available. A detailed specification is available here:
+Other configuration options are available for resource constraints (`spec.limits`, `spec.requests`) and environment variables for the build resources in the supply chain (`spec.build.env`) and to be passed to the running application (`spec.env`).
+
+Last but not least via (`.spec.params`), it's possible to override default values of the additional parameters that are used in the Supply Chain but not part of the official Workload specification.
+
+There are more configuration options available which you can have a look at in the detailed specification here:
 ```dashboard:open-url
 url: https://cartographer.sh/docs/v0.7.0/reference/workload/
 ```
