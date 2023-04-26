@@ -33,9 +33,12 @@ As the OOTB Supply Chain with Testing and Scanning provides the most capabilitie
 
 A `ClusterSupplyChain` is Cartographer's CRD to define a supply chain. By exporting the OOTB Supply Chain with Testing and Scanning from the cluster, we can have a look at it in the local IDE.
 ```execute
-kubectl eksporter ClusterSupplyChain source-test-scan-to-url
+kubectl eksporter ClusterSupplyChain source-test-scan-to-url > supply-chain.yaml
+```
+```editor:open-file
+file: ~/supply-chain.yaml
 ```
 
-
-
-We'll do this hands-on with an example of a simple supply chain that watches a Git repository for changes, builds a container image, and deploys it to the cluster.
+```dashboard:open-url
+url: https://tap-gui.{{ ENV_TAP_INGRESS }}/supply-chain/host/{{ session_namespace }}/payment-service
+```

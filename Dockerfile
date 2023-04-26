@@ -25,6 +25,8 @@ ENV PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 RUN kubectl krew install tree
 RUN kubectl krew install eksporter
 RUN chmod 775 -R $HOME/.krew
+RUN apt update
+RUN apt install ruby-full -y
 
 RUN rm -rf /tmp/*
 
