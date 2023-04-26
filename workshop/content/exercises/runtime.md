@@ -15,25 +15,37 @@ The major **subprojects of Knative** are Serving and Eventing.
 - **Serving** supports deploying upgrading, routing, and scaling of stateless applications and functions 
 - **Eventing** enables developers to use an event-driven architecture with serverless applications and is **out of scope of this workshop**
 
-Let's have a look at the Knative Serving service the supply chain has generated and deploy for us.
+Let's have a look at the Knative Serving Service the supply chain has generated and deploy for us.
 ```terminal:execute
 command: kubectl get kservice payment-service
 clear: true
 ```
-You can see that 
+The output provides information about the status, the revision, and the url the application is exposed with.
 
+By using the **kubectl tree plugin**, we can really see how **Knative Serving abstracts away a lot of those resources** we usually have to configure to get an application running like a deployment, service, ingress etc.
 ```terminal:execute
-command: kubectl tree kservice payment-service
+command: kubectl tree kservice payment-service | less
 clear: true
 ```
 
+It also provides **configurable auto scaling** and **scale to zero** which is the reason why you had to wait for some seconds after you first called your appliction. Other features are rollbacks, canary and blue-green deployment via revisions and traffic splitting.
 
 
 ##### Provisioning and consumption of backing services
 
-Tanzu Application Platform makes it easy to discover, curate, consume, and manage backing services, such as databases, queues, and caches, across single or multi-cluster environments. 
+VMware Tanzu Application Platform makes it easy as possible to discover, curate, consume, and manage backing services, such as databases, queues, and caches, across single or multi-cluster environments. 
 
-This experience is made possible in Tanzu Application Platform by using the **Services Toolkit** component. 
+This experience is made possible by using the **Services Toolkit** component. 
+
+
+**TODO**
+
+
+
+
+
+
+
 
 Within the context of Tanzu Application Platform, one of the most important use cases is binding an application workload to a backing service such as a PostgreSQL database or a RabbitMQ queue. 
 This use case is made possible by the [Service Binding Specification](https://github.com/k8s-service-bindings/spec) for Kubernetes. 
