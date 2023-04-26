@@ -58,7 +58,7 @@ We can also see in the example how inputs from other resources can be defined. I
 
 ```editor:select-matching-text
 file: ~/supply-chain.yaml
-text: "selector:"
+text: "selector:\n    apps.tanzu.vmware.com/has-tests: 'true'"
 after: 8
 ```
 
