@@ -28,6 +28,9 @@ RUN chmod 775 -R $HOME/.krew
 RUN apt update
 RUN apt install ruby-full -y
 
+# Utilities
+RUN apt-get update && apt-get install -y unzip moreutils
+
 RUN rm -rf /tmp/*
 
 USER 1001
