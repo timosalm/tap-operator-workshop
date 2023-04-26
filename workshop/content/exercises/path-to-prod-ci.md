@@ -102,23 +102,20 @@ clear: true
 Let's no try to get the step pass by white listing the severities for demo purposes.
 
 ```terminal:execute
-command: |
-  kubectl eksporter scanpolicy > ~/exports/scanpolicy.yaml
-  CVE_IDS="ignoreCves := [$(tanzu insight source vulnerabilities --commit $COMMIT_REVISION  --output-format api-json | jq '. | map(.CVEID) | join(",")' | sed 's/,/","/g')]"
-  echo $CVE_IDS
+command: echo "ignoreCves := [$(tanzu insight source vulnerabilities --commit $COMMIT_REVISION  --output-format api-json | jq '. | map(.CVEID) | join(",")' | sed 's/,/","/g')]"
 clear: true
 ```
 **Copy the output of the command.**
 
 ```editor:select-matching-text
-file: ~/exports/scanpolicy.yaml
+file: ~/samples/scan-policy.yaml
 text: "ignoreCves := []"
 ```
 
-**Paste the output of the command to override the current value and run the following command to apply the updated scan policy.**
+**Paste the output of the command to override the current value, save the file, and run the following command to apply the updated scan policy.**
 
 ```execute
-kubectl apply -f ~/exports/scanpolicy.yaml
+kubectl apply -f ~/samples/scan-policy.yaml
 ```
 
 If you **go back to TAP-GUI**, you should see that the **status of the source scan will change** and the source code will be passed to the next step.
