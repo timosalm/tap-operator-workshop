@@ -1,0 +1,1 @@
+![Multicluster topology](../images/multicluster-diagram.jpg)
