@@ -117,3 +117,6 @@ text: "ignoreCves := []"
 file: ~/exercises/sample.txt
 text: $CVE_IDS
 ```
+```workshop:copy
+text: echo $CVE_IDS
+```
