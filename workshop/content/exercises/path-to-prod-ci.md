@@ -93,17 +93,27 @@ The resulting source code vulnerability reports will be automatically stored to 
 
 ```terminal:execute
 command: |
-  COMMIT_REVISION=$(kubectl get sourcescan payment-service -o jsonpath='{.spec.blob.revision}')
+  COMMIT_REVISION=$(kubectl get sourcescan payment-service -o jsonpath='{.spec.blob.revision}' | awk -F / '{ print $2 }')
   tanzu insight source get --commit $COMMIT_REVISION
 clear: true
 ```
 
-Let's no try to get the step pass by removing the not allowed severities even if it is also possible to white
-It's also possible to 
-ignoreCves := []
-
+###### Updating the scan policy
+Let's no try to get the step pass by white listing the severities for demo purposes.
 
 ```terminal:execute
-command: kubectl eksporter scanpolicy >
+command: |
+  kubectl eksporter scanpolicy > ~/exports/scanpolicy.yaml
+  CVE_IDS="ignoreCves := [$(tanzu insight source vulnerabilities --commit $COMMIT_REVISION  --output-format api-json | jq '. | map(.CVEID) | join(",")' | sed 's/,/","/g')]"
 clear: true
+```
+
+```editor:select-matching-text
+file: ~/exports/scanpolicy.yaml
+text: "ignoreCves := []"
+```
+
+```editor:replace-text-selection
+file: ~/exercises/sample.txt
+text: $CVE_IDS
 ```
