@@ -100,6 +100,7 @@ spec:
         - carto.run
         - scanning.apps.tanzu.vmware.com
         - conventions.carto.run
+        - serving.knative.dev
         resources:
         - '*'
         verbs:

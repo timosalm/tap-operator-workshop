@@ -1,13 +1,33 @@
+VMware Tanzu Application platform also provides several tools for the runtime of the application.
+
 ##### Serverless runtime
 
-Cloud Native Runtimes for VMware Tanzu (CNRs) simplify deploying and operating microservices on Kubernetes. They are a set of capabilities that enable to leverage the power of Kubernetes for Serverless use cases without first having to master the Kubernetes API.
+When you opened the URL of the running application in the browser you may have seen that TLS was configured and it took some time until you got a first response from the application.
 
-CNRs includes Knative, an open source community project that provides a simple, consistent layer over Kubernetes that solves common problems of deploying software, connecting disparate systems together, upgrading software, observing software, routing traffic, and scaling automatically. 
+Both are in a way features of our commercial **Cloud Native Runtimes for VMware Tanzu** (CNRs) which is a serverless application runtime for Kubernetes that is based on **Knative**.
 
-The major subprojects of Knative are Serving and Eventing.
+Knative, is an open source community project which provides a simple, consistent layer over Kubernetes that solves common problems of deploying software, connecting disparate systems together, upgrading software, observing software, routing traffic, and scaling automatically. 
+```dashboard:open-url
+url: https://knative.dev/docs/
+```
 
-Serving is responsible for deploying, upgrading, routing, and scaling.
-Eventing is responsible for connecting disparate systems. Dividing responsibilities this way allows each to be developed more independently and rapidly by the Knative community.
+The major **subprojects of Knative** are Serving and Eventing.
+- **Serving** supports deploying upgrading, routing, and scaling of stateless applications and functions 
+- **Eventing** enables developers to use an event-driven architecture with serverless applications and is **out of scope of this workshop**
+
+Let's have a look at the Knative Serving service the supply chain has generated and deploy for us.
+```terminal:execute
+command: kubectl get kservice payment-service
+clear: true
+```
+You can see that 
+
+```terminal:execute
+command: kubectl tree kservice payment-service
+clear: true
+```
+
+
 
 ##### Provisioning and consumption of backing services
 
