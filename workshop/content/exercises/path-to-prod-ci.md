@@ -93,8 +93,8 @@ The resulting source code vulnerability reports will be automatically stored to 
 
 ```terminal:execute
 command: |
-  IMAGE_DIGEST=$(kubectl get sourcescan payment-service -o jsonpath='{.spec.blob.revision}')
-  tanzu insight source get --commit $IMAGE_DIGEST
+  COMMIT_REVISION=$(kubectl get sourcescan payment-service -o jsonpath='{.spec.blob.revision}')
+  tanzu insight source get --commit $COMMIT_REVISION
 clear: true
 ```
 
