@@ -13,16 +13,11 @@ spec:
       ref:
         branch: main
   serviceClaims:
-  - name: config-server
+  - name: db
     ref:
       apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
-      name: configserver-binding-compatible
-  - name: observability
-    ref:
-      apiVersion: services.apps.tanzu.vmware.com/v1alpha1
-      kind: ResourceClaim
-      name: observability-binding-compatible
+      kind: ClassClaim
+      name: postgres-1
   build:
     env:
     - name: BP_JVM_VERSION
