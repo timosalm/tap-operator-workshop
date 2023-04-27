@@ -20,6 +20,6 @@ spec:
   workshops:
     - name: tap-operator-workshop
       capacity: 50
-      reserved: 0
+      reserved: 33
       expires: 2h
       orphaned: 1h

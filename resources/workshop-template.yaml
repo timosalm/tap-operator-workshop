@@ -188,14 +188,14 @@ spec:
       kind: RoleBinding
       metadata:
         name: delete-app-rb
+        namespace: $(session_namespace)
       roleRef:
-        - apiGroup: rbac.authorization.k8s.io
-          kind: RoleBinding
-          name: workload-gitops
-          namespace: $(session_namespace)
+          apiGroup: rbac.authorization.k8s.io
+          kind: Role
+          name: delete-app
       subjects:
         - kind: ServiceAccount
-          name: default
+          name: $(workshop_namespace)
           namespace: $(session_namespace)
     # Install grype
     - apiVersion: packaging.carvel.dev/v1alpha1
