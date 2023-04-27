@@ -119,6 +119,7 @@ spec:
         - packaging.carvel.dev
         - pkg.crossplane.io
         - services.apps.tanzu.vmware.com
+        - source.toolkit.fluxcd.io
         resources:
         - '*'
         verbs:
