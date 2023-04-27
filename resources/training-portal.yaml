@@ -15,11 +15,11 @@ spec:
     updates:
       workshop: true
     sessions:
-      maximum: 50
+      maximum: 40
     reserved: 0
   workshops:
     - name: tap-operator-workshop
-      capacity: 50
-      reserved: 31
+      capacity: 40
+      reserved: 30
       expires: 2h
       orphaned: 1h

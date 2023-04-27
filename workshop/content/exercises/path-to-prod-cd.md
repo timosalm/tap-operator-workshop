@@ -215,4 +215,16 @@ A **ClusterDeploymentTemplate** must specify criteria to determine whether the t
 With the **OOTB Delivery of TAP**, the GitOps repository will be watched for changes with the **Flux Source Controller**, and the provided source code will be applied via **kapp-controller**.
 **kapp-controller** could also be used to directly fetch and apply the contents of the GitOps repository, but this implementation should make it easy to add additional steps to the ClusterDelivery.
 
+After we've finally had a look at all the different steps of TAP's OOTB supply chain, it's time to have another look at our now hopefully running workload and open the provided URL to access our application.
+```terminal:execute
+command: tanzu apps workload get payment-service
+clear: true
+```
+The URL is also available in the detail view of the Delivery step in TAP-GUI.
+Or you can just call it here:
+```dashboard:open-url
+url: https://payment-service-{{ session_namespace }}.{{ ENV_TAP_INGRESS }}
+```
+It could take some more time to expose the service via `https`. Switch to `http` if you're not getting a response.
+
 In the next section, you'll get some information about components that are relevant for the running application.

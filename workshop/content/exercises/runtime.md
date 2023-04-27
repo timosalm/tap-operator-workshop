@@ -100,7 +100,7 @@ clear: true
 
 It also provides **configurable auto-scaling** and **scale to zero**, which is the reason why you had to wait for some seconds after you first called your application. Other features are rollbacks, canary and blue-green deployment via revisions, and traffic splitting.
 
-After we've finally had a look at all the different steps of TAP's OOTB supply chain, it's time to have another look at our now hopefully running workload and open the provided URL to access our application.
+After we've finally had a look at all the different steps of TAP's OOTB supply chain, it's another time to have another look at our now hopefully running workload and open the provided URL to access our application.
 ```terminal:execute
 command: tanzu apps workload get payment-service
 clear: true
@@ -110,5 +110,6 @@ Or you can just call it here:
 ```dashboard:open-url
 url: https://payment-service-{{ session_namespace }}.{{ ENV_TAP_INGRESS }}
 ```
+It could take some more time to expose the service via `https`. Switch to `http` if you're not getting a response.
 
 Our application should output `Hello POSTGRESQL` instead of `Hello H2` for the in-memory database, if the Service Binding works.
