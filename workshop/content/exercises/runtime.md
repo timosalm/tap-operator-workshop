@@ -62,7 +62,7 @@ clear: true
 ```
 The Service-Binding should be ready now.
 ```terminal:execute
-command: kubectl delete app payment-service && kubectl get servicebindings
+command: kubectl get servicebindings
 clear: true
 ```
 
