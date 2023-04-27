@@ -7,6 +7,7 @@ metadata:
 spec:
   portal:
     title: Workshops for TAP operators
+    password: hello-tanzu
     registration:
       type: one-step
       enabled: false
