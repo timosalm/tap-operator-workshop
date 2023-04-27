@@ -189,9 +189,10 @@ spec:
       metadata:
         name: delete-app-rb
       roleRef:
-        apiGroup: rbac.authorization.k8s.io
-        kind: RoleBinding
-        name: workload-gitops
+        - apiGroup: rbac.authorization.k8s.io
+          kind: RoleBinding
+          name: workload-gitops
+          namespace: $(session_namespace)
       subjects:
         - kind: ServiceAccount
           name: default
