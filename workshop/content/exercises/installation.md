@@ -59,5 +59,3 @@ https://pinniped.dev
 The next integration point is TAP-GUI. **Backstage** is the underlying technology of TAP-GUI which supports a variety of Authentication providers. It still lacks fine-granular authorization controls which we are working on adding to TAP-GUI.
 
 Last but not least we have we've a component called **Application Single Sign-On for VMware Tanzu** to secure access to applications running on TAP which supports OIDC, LDAP, and SAML.
-
-#### 
