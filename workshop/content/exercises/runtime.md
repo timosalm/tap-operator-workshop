@@ -2,33 +2,33 @@ VMware Tanzu Application platform also provides several tools for the runtime of
 
 ##### Serverless runtime
 
-When you opened the URL of the running application in the browser you may have seen that TLS was configured and it took some time until you got a first response from the application.
+When you opened the URL of the running application in the browser, you may have seen that TLS was configured, and it took some time until you got a first response from the application.
 
-Both are in a way features of our commercial **Cloud Native Runtimes for VMware Tanzu** (CNRs) which is a serverless application runtime for Kubernetes that is based on **Knative**.
+Both are, in a way, features of our commercial **Cloud Native Runtimes for VMware Tanzu** (CNRs), which is a serverless application runtime for Kubernetes that is based on **Knative**.
 
-Knative, is an open source community project which provides a simple, consistent layer over Kubernetes that solves common problems of deploying software, connecting disparate systems together, upgrading software, observing software, routing traffic, and scaling automatically. 
+Knative, is an open-source community project, which provides a simple, consistent layer over Kubernetes that solves common problems of deploying software, connecting disparate systems together, upgrading software, observing software, routing traffic, and scaling automatically. 
 ```dashboard:open-url
 url: https://knative.dev/docs/
 ```
 
 The major **subprojects of Knative** are Serving and Eventing.
 - **Serving** supports deploying upgrading, routing, and scaling of stateless applications and functions 
-- **Eventing** enables developers to use an event-driven architecture with serverless applications and is **out of scope of this workshop**
+- **Eventing** enables developers to use an event-driven architecture with serverless applications and is **out of the scope of this workshop**
 
-Let's have a look at the Knative Serving Service the supply chain has generated and deploy for us.
+Let's have a look at the Knative Serving Service the supply chain has generated and deployed for us.
 ```terminal:execute
 command: kubectl get kservice payment-service
 clear: true
 ```
 The output provides information about the status, the revision, and the url the application is exposed with.
 
-By using the **kubectl tree plugin**, we can really see how **Knative Serving abstracts away a lot of those resources** we usually have to configure to get an application running like a deployment, service, ingress etc.
+By using the **kubectl tree plugin**, we can really see how **Knative Serving abstracts away a lot of those resources** we usually have to configure to get an application running, like a deployment, service, ingress etc.
 ```terminal:execute
 command: kubectl tree kservice payment-service | less
 clear: true
 ```
 
-It also provides **configurable auto scaling** and **scale to zero** which is the reason why you had to wait for some seconds after you first called your appliction. Other features are rollbacks, canary and blue-green deployment via revisions and traffic splitting.
+It also provides **configurable auto-scaling** and **scale to zero**, which is the reason why you had to wait for some seconds after you first called your application. Other features are rollbacks, canary and blue-green deployment via revisions, and traffic splitting.
 
 
 ##### Provisioning and consumption of backing services
@@ -37,26 +37,26 @@ VMware Tanzu Application Platform makes it easy as possible to discover, curate,
 
 This experience is made possible by using the **Services Toolkit** component. 
 
-Services Toolkit provides the **functionality to automatically inject credentials that are required for the connection to backing service** such as a PostgreSQL database or a RabbitMQ into the containers of the running appplication via the [Service Binding Specification](https://github.com/k8s-service-bindings/spec) for Kubernetes. 
-The developer defines the backing services the application wants to bind to in the Workload. In our case it's a PostgreSQL database.
+Services Toolkit provides the **functionality to automatically inject credentials that are required for the connection to the backing service**, such as a PostgreSQL database or a RabbitMQ, into the containers of the running application via the [Service Binding Specification](https://github.com/k8s-service-bindings/spec) for Kubernetes. 
+The developer defines the backing services the application wants to bind to in the Workload. In our case, it's a PostgreSQL database.
 ```editor:select-matching-text
 file: ~/samples/workload-gitops/workload.yaml
 text: "serviceClaims:"
 after: 5
 ```
 
-Those backing services have to be available in the cluster or registered in it to be consumed by the service binding. For the best experience, developers should have a self-service to provision them across all the stages for the application.
+Those backing services have to be available in the cluster or registered in it to be consumed by the service binding. For the best experience, developers should have a self-service to provision them across all the stages of the application.
 The **services must also be bindable**, which means they must adhere to the provisioned services definition in the service binding specification for Kubernetes.
 
-**Services Toolkit provides several abstractions and ways to bind to services that are not service binding compatible, running in a different namespace and also outside of the cluster.**
+**Services Toolkit provides several abstractions and ways to bind to services that are not service-binding compatible, running in a different namespace and also outside of the cluster.**
 ```dashboard:open-url
 url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/services-toolkit-concepts-service-consumption.html
 ```
 
-We will now have a look at the highest abstraction called **Dynamic Provisioning** which was introduced in TAP 1.5. The only provisioner type currently supported is **Crossplane** and are also **partnering with the company behind that open source project called Upbound**.
+We will now have a look at the highest abstraction called **Dynamic Provisioning**, which was introduced in TAP 1.5. The only provisioner type currently supported is **Crossplane**, and we are also **partnering with the company behind that open-source project called Upbound**.
 Support for new provisioners might be added in the future.
 
-In this workshop we will run commands manually to dynamicall provision a postgreSQL database for our application, in production environments this should be automated.
+In this workshop, we will run commands manually to dynamically provision a PostgreSQL database for our application - in production environments, this should be automated.
 
 The following diagram provides an overview of the resources that will be applied or generated on the Kubernetes cluster.
 ![](../images/dynamic-provisioning.png)
@@ -72,7 +72,7 @@ Let's first discover available service classes in the cluster.
 command: tanzu service class list
 clear: true
 ```
-There are several Bitnami Helm charts for data services available which are pre-installed with TAP as examples on how you can define your classes for data services you want to provide to users of the platform. Those services can run everywhere, where Crossplane supports the provisioning, e.g. in a Kubernetes cluster or native on a public cloud.
+There are several Bitnami Helm charts for data services available, which are pre-installed with TAP as examples of how you can define your classes for data services you want to provide to users of the platform. Those services can run everywhere where Crossplane supports the provisioning, e.g. in a Kubernetes cluster or native on a public cloud.
 
 We can have a closer look at a service class to see available configuration options exposed by the platform operators.
 ```terminal:execute
@@ -97,11 +97,11 @@ command: kubectl get servicebindings
 clear: true
 ```
 
-... and our application should output `Hello POSTGRESQL` instead of `Hello H2` for the in memory database.
+... and our application should output `Hello POSTGRESQL` instead of `Hello H2` for the in-memory database.
 ```dashboard:open-url
 url: https://payment-service-{{ session_namespace }}.{{ ENV_TAP_INGRESS }}
 ```
 
-The service classes abstraction and Crossplane make it also possible to have a different way of provisioning for e.g. a PostgreSQL database in different clusters without changing the workload or resources generated by the supply chain for it. So a PostgreSQL database in test cluster could be dynamically provisioned as Helm chart, in the staging cluster with an PostgreSQL Kubernetes operator and HA configuration, and for production as a native AWS service. 
+The service classes abstraction and Crossplane make it also possible to have a different way of provisioning for e.g. a PostgreSQL database in different clusters without changing the workload or resources generated by the supply chain for it. So a PostgreSQL database in test cluster could be dynamically provisioned as Helm Chart, in the staging cluster with a PostgreSQL Kubernetes operator and HA configuration and for production as a native AWS service. 
 
-Other runtime components of VMware Tanzu Application Platform like **Application Live View, VMware Spring Cloud Gateway for Kubernetes, Application Configuration Service, Application Single Sign-On, and Contour will not be covered in this workshop**.
+Other runtime components of VMware Tanzu Application Platform, like **Application Live View, VMware Spring Cloud Gateway for Kubernetes, Application Configuration Service, Application Single Sign-On, and Contour, will not be covered in this workshop**.
