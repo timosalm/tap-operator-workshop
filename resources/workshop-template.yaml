@@ -109,6 +109,7 @@ spec:
         - 'get'
         - 'list'
       - apiGroups:
+        - servicebinding.io
         - tekton.dev
         - kpack.io
         - carto.run
@@ -117,11 +118,24 @@ spec:
         - serving.knative.dev
         - packaging.carvel.dev
         - pkg.crossplane.io
+        - services.apps.tanzu.vmware.com
         resources:
         - '*'
         verbs:
         - 'get'
         - 'list'
+      - apiGroups:
+        - services.apps.tanzu.vmware.com
+        resources:
+        - classclaims
+        verbs:
+        - 'create'
+      - apiGroups:
+        - services.apps.tanzu.vmware.com
+        resources:
+        - clusterinstanceclasses
+        verbs:
+        - 'claim'
       - apiGroups:
         - scanning.apps.tanzu.vmware.com
         resources:
