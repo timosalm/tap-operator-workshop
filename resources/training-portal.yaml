@@ -9,7 +9,7 @@ spec:
     title: Workshops for TAP operators
     password: hello-tanzu
     registration:
-      enabled: false
+      type: anonymous
     ingress:
         hostname: tap-operator-workshops
     updates:
