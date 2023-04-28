@@ -92,9 +92,9 @@ clear: true
 ```
 The output provides information about the status, the revision, and the url the application is exposed with.
 
-By using the **kubectl tree plugin**, we can really see how **Knative Serving abstracts away a lot of those resources** we usually have to configure to get an application running, like a deployment, service, ingress etc.
+**Knative Serving abstracts away a lot of those resources** we usually have to configure to get an application running, like a deployment, service, ingress etc.
 ```terminal:execute
-command: kubectl tree kservice payment-service | less
+command: kubectl get deployment,service,httpproxy | less
 clear: true
 ```
 

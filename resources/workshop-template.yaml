@@ -111,6 +111,7 @@ spec:
       - apiGroups:
         - servicebinding.io
         - tekton.dev
+        - projectcontour.io
         - kpack.io
         - carto.run
         - scanning.apps.tanzu.vmware.com
