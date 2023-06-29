@@ -5,7 +5,7 @@ For the installation and upgrades, VMware Tanzu Application Platform is heavily 
 url: https://carvel.dev
 ```
 ```dashboard:open-url
-https://carvel.dev/kapp-controller/docs/v0.43.2/packaging/
+url: https://carvel.dev/kapp-controller/docs/v0.43.2/packaging/
 ```
 
 Here is a diagram that shows the relationship of all the CRDs for package management with kapp-controller.
