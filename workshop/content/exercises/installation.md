@@ -39,11 +39,11 @@ url: https://tanzu.academy/paths
 ##### GitOps
 Since TAP 1.5 it's now possible to also install VMware Tanzu Application Platform via GitOps.
 ```dashboard:open-url
-https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/install-gitops-intro.html
+url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/install-gitops-intro.html
 ```
 The auto provisioning of namespaces with required resources like scan policies is also possible via GitOps.
 ```dashboard:open-url
-https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/namespace-provisioner-about.html
+url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/namespace-provisioner-about.html
 ```
 
 It you use GitOps for the installation, it probably also makes sense to manage the other resources that have to be applied to the cluster via GitOps, like for example the workloads, supply chains, app accelerators, etc.
@@ -53,7 +53,7 @@ There are several levels and components an Authentication provider has to be int
 
 As most of the capabilities of TAP are Kubernetes native, the first level is the role-based access control (RBAC) of the Kubernetes clusters. With **Pinniped** VMWare has created an OSS solution that not only works with TKG, but also with EKS, AKS, and GKE and supports OIDC, LDAP, and Microsoft AD.
 ```dashboard:open-url
-https://pinniped.dev
+url: https://pinniped.dev
 ```
 
 The next integration point is TAP-GUI. **Backstage** is the underlying technology of TAP-GUI which supports a variety of Authentication providers. It still lacks fine-granular authorization controls which we are working on adding to TAP-GUI.
