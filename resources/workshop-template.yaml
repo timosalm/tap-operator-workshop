@@ -12,7 +12,7 @@ spec:
   vendor: tanzu.vmware.com
   difficulty: beginner
   duration: 60m
-  url: https://github.com/tsalm-vmware/tap-operator-workshop
+  url: https://github.com/timosalm/tap-operator-workshop
   content:
     image: #@ "{}/tap-workshop/tap-operator-workshop:latest".format(data.values.container_registry.hostname)
     files: #@ "github.com/{}/tap-operator-workshop?ref={}".format(data.values.workshop_git.username,data.values.workshop_git.branch)
@@ -228,7 +228,7 @@ spec:
         serviceAccountName: default
         fetch:
         - git:
-            url: https://github.com/tsalm-vmware/tap-operator-workshop.git
+            url: https://github.com/timosalm/tap-operator-workshop.git
             ref: origin/main
             subPath: samples/workload-gitops
         template:

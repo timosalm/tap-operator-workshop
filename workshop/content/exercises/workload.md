@@ -19,7 +19,7 @@ kubectl apply -f workload.yaml
 
 The sample Workload for this workshop is applied via **GitOps** and available here:
 ```dashboard:open-url
-url: https://github.com/tsalm-vmware/tap-operator-workshop/blob/main/samples/workload-gitops/workload.yaml
+url: https://github.com/timosalm/tap-operator-workshop/blob/main/samples/workload-gitops/workload.yaml
 ```
 
 GitOps is an operational model that uses Git repositories as a single source of truth to version and store infrastructure configuration. The configuration is pulled continuously by tools like in this case [kapp-controller](https://carvel.dev/kapp-controller/) or [Flux](https://fluxcd.io) to ensure the infrastructure is correctly configured.
