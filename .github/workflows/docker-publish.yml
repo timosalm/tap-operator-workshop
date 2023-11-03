@@ -34,13 +34,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: Log into Tanzu Network
-        uses: docker/login-action@28218f9b04b4f3f62068d7b6ce6ca5b26e35336c
-        with:
-          registry: registry.tanzu.vmware.com
-          username: ${{ secrets.TANZUNET_USERNAME }}
-          password: ${{ secrets.TANZUNET_PASSWORD }}
-          
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
