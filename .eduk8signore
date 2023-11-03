@@ -1,7 +1,0 @@
-./resources
-./.gitignore
-./Dockerfile
-./install.sh
-./README.md
-./values-example.yaml
-./.dockerignore

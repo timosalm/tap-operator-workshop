@@ -1,16 +1,24 @@
-FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:c184e9399d2385807833be0a9f1718c40caa142b6e1c3ddf64fa969716dcd4e3
+FROM ghcr.io/vmware-tanzu-labs/educates-base-environment:2.6.16
+
+RUN mkdir /opt/workshop
 
 USER root
 
 # Tanzu CLI
-ADD tanzu-framework-linux-amd64-v0.28.1.1.tar /tmp
-RUN mv $(find /tmp/ -name 'tanzu-core-linux_amd64' -print0) /usr/local/bin/tanzu && \
-  chmod 755 /usr/local/bin/tanzu && \
-  tanzu plugin install --local /tmp/cli/ all && \
-  chmod -R 755 .config/tanzu
+RUN echo $' \n\
+[tanzu-cli] \n\
+name=Tanzu CLI \n\
+baseurl=https://storage.googleapis.com/tanzu-cli-os-packages/rpm/tanzu-cli \n\
+enabled=1 \n\
+gpgcheck=1 \n\
+repo_gpgcheck=1 \n\
+gpgkey=https://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub ' >> /etc/yum.repos.d/tanzu-cli.repo
+RUN yum install -y tanzu-cli
+RUN yes | tanzu plugin install --group vmware-tanzucli/essentials:v1.0.0
+RUN yes | tanzu plugin install --group vmware-tap/default:v1.6.4
 
 # TBS
-RUN curl -L -o /usr/local/bin/kp https://github.com/vmware-tanzu/kpack-cli/releases/download/v0.10.0/kp-linux-amd64-0.10.0 && \
+RUN curl -L -o /usr/local/bin/kp https://github.com/buildpacks-community/kpack-cli/releases/download/v0.12.0/kp-linux-amd64-0.12.0 && \
   chmod 755 /usr/local/bin/kp
 
 # Install krew
@@ -26,19 +34,15 @@ RUN \
 )
 RUN echo "export PATH=\"${KREW_ROOT:-$HOME/.krew}/bin:$PATH\"" >> ${HOME}/.bashrc
 ENV PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+ENV KUBECTL_VERSION=1.25
 RUN kubectl krew install tree
 RUN kubectl krew install eksporter
 RUN chmod 775 -R $HOME/.krew
-RUN apt update
-RUN apt install ruby-full -y
 
 # Utilities
-RUN apt-get update && apt-get install -y unzip moreutils
-
-RUN chown -R eduk8s:users /home/eduk8s/.config
-
-RUN rm -rf /tmp/*
-
-USER 1001
+RUN yum install moreutils wget ruby -y
 
 RUN fix-permissions /home/eduk8s
+RUN fix-permissions /opt
+
+USER 1001
