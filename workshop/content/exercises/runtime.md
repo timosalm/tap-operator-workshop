@@ -19,7 +19,7 @@ The **services must also be bindable**, which means they must adhere to the prov
 
 **Services Toolkit provides several abstractions and ways to bind to services that are not service-binding compatible, running in a different namespace and also outside of the cluster.**
 ```dashboard:open-url
-url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/services-toolkit-concepts-service-consumption.html
+url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/services-toolkit-concepts-service-consumption.html
 ```
 
 We will now have a look at the highest abstraction called **Dynamic Provisioning**, which was introduced in TAP 1.5. The only provisioner type currently supported is **Crossplane**, and we are also **partnering with the company behind that open-source project called Upbound**.

@@ -9,7 +9,7 @@ metadata:
 spec:
   source:
     git:
-      url: https://github.com/tsalm-vmware/tap-workshops-payment-service.git
+      url: https://github.com/timosalm/tap-workshops-payment-service.git
       ref:
         branch: main
   serviceClaims:

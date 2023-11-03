@@ -32,7 +32,7 @@ By design, **a supply chain can be used by many workloads of a specific type**, 
 
 To enable app operators to consistently apply runtime configurations to fleets of workloads of a specific type implemented in different technologies, **Cartographer Conventions** is another component of TAP that is not yet available as OSS. 
 ```dashboard:open-url
-url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/cartographer-conventions-about.html
+url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/cartographer-conventions-about.html
 ```
 
 ###### Kubernetes Resource Interoperability

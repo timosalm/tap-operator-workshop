@@ -37,13 +37,13 @@ url: https://tanzu.academy/paths
 ```
 
 ##### GitOps
-Since TAP 1.5 it's now possible to also install VMware Tanzu Application Platform via GitOps.
+Since TAP 1.5 it's possible to also install VMware Tanzu Application Platform via GitOps.
 ```dashboard:open-url
-url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/install-gitops-intro.html
+url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/install-gitops-intro.html
 ```
 The auto provisioning of namespaces with required resources like scan policies is also possible via GitOps.
 ```dashboard:open-url
-url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/namespace-provisioner-about.html
+url: https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.6/tap/namespace-provisioner-about.html
 ```
 
 It you use GitOps for the installation, it probably also makes sense to manage the other resources that have to be applied to the cluster via GitOps, like for example the workloads, supply chains, app accelerators, etc.
